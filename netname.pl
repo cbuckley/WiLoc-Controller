@@ -14,8 +14,8 @@ my $err;
 my $controllerid = "lrhcngawjz";
 my $dev = "mon0";
 my $type = 'DLT_IEEE802_11';
-#my $stomp = Net::Stomp->new( { hostname => '192.168.10.99', port => '61613' } );
-#$stomp->connect( { login => 'admin', passcode => 'password' } );
+my $stomp = Net::Stomp->new( { hostname => '192.168.10.99', port => '61613' } );
+$stomp->connect( { login => 'admin', passcode => 'password' } );
 unless (defined $dev) {
     $dev = Net::Pcap::lookupdev(\$err);
     if (defined $err) {
@@ -42,7 +42,7 @@ sub syn_packets {
 	}
 	my $json = JSON->new->allow_nonref;
         my $jsonstr = $json->encode($parsed);
- #       $stomp->send({ destination => '/queue/packets', body => $jsonstr } );
+        $stomp->send({ destination => '/queue/packets', body => $jsonstr } );
 }
 sub parsepacket	{
 	my ($binpacket) = @_;
