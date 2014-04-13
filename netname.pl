@@ -1,9 +1,6 @@
 #!/usr/bin/perl
 
 use Net::Pcap;
-use NetPacket::Ethernet;
-use NetPacket::IP;
-use NetPacket::TCP;
 use Data::Dumper;
 use JSON;
 use Net::Stomp;
