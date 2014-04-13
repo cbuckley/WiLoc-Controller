@@ -11,7 +11,15 @@ use strict;
 
 $| = 1;
 my $err;
-my $controllerid = "lrhcngawjz";
+open DATA, "controller.cfg" or die "Can't open file: $!";
+my $controllerid;
+while (<DATA>) {
+        chomp;
+        ($controllerid) = split /\|/;
+}
+close DATA;
+
+die "OOPS" if !$controllerid;
 my $dev = "mon0";
 my $type = 'DLT_IEEE802_11';
 my $stomp = Net::Stomp->new( { hostname => '192.168.10.99', port => '61613' } );
