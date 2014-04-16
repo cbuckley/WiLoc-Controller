@@ -47,7 +47,7 @@ sub syn_packets {
 	}
 	my $json = JSON->new->allow_nonref;
         my $jsonstr = $json->encode($parsed);
-        $stomp->send({ destination => '/queue/packets', body => $jsonstr } );
+        $stomp->send({ destination => '/topic/packets', body => $jsonstr } );
 }
 sub parsepacket	{
 	my ($binpacket) = @_;
