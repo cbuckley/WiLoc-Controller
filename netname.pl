@@ -42,9 +42,6 @@ sub syn_packets {
 	my $binpacket = asc2bin($packet); #Packet converted to binary
 	my $parsed = parsepacket($binpacket);
 	Net::Pcap::dump($pdump, $header, $packet);
-		if($parsed->{IEEE80211_ADDR2_HEX} eq "0021296CDB77")	{
-			print Dumper($parsed);
-	}
 	my $json = JSON->new->allow_nonref;
         my $jsonstr = $json->encode($parsed);
         $stomp->send({ destination => '/topic/packets', body => $jsonstr } );
